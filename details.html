@@ -3,36 +3,38 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://fonts.google.com/specimen/Nunito+Sans">
         <title>Country details<!--interactiveness in changing of country names--></title>
     </head>
-    <body>
-        <header>
-            <h1>Where in the world?</h1>
-            <button>Dark Mode</button>
+    <body class="details-body">
+        <header class="header-bar">
+            <h1 class="header-bar-title">Where in the world?</h1>
+            <button id="theme-btn">Dark Mode</button>
         </header>
-        <button> Back</button>
-        <div>
-            <div><img src="" alt=""></div>
-            <div>
-                <h2><!--country name--></h2>
-                <div>
-                    <ul>
-                        <li>Native Name: <span><!--value--></span></li>
-                        <li>Population: <span><!--value--></span></li>
-                        <li>Regiion: <span><!--value--></span></li>
-                        <li>Sub Region: <span><!--value--></span></li>
-                        <li>Capital: <span><!--value--></span></li>
+        <button class="element back-btn"> Back</button>
+        <div class="details-div">
+            <div class="img-div"><img class="details-img" src="try.jpg" alt=""></div>
+            <div class="side-details">
+                <h2 class="text1 det-country-name"> Germany<!--country name--></h2>
+                <div class="country-info">
+                    <ul class="c-details-1">
+                        <li class="text2 details-label">Native Name: Belgie<span><!--value--></span></li>
+                        <li class="text2 details-label">Population: <span><!--value--></span></li>
+                        <li class="text2 details-label">Regiion: <span><!--value--></span></li>
+                        <li class="text2 details-label">Sub Region: <span><!--value--></span></li>
+                        <li class="text2 details-label">Capital: <span><!--value--></span></li>
                     </ul>
                 </div>
-                <div>
-                    <ul>
-                        <li>Top Level Domain: <span><!--value--></span></li>
-                        <li>Currencies: <span><!--value--></span></li>
-                        <li>Languages: <span><!--value--></span></li>
+                <div class="country-info">
+                    <ul class="c-details-2">
+                        <li class="text2 details-label">Top Level Domain: <span><!--value--></span></li>
+                        <li class="text2 details-label">Currencies: <span><!--value--></span></li>
+                        <li class="text2 details-label">Languages: <span><!--value--></span></li>
                     </ul>
                 </div>
-                <div>
-                    <span>Border Countries:</span>
+                <div class="borders-div">
+                    <span class="text2">Border Countries:</span>
                     <a><!--country1--></a>
                     <a><!--country2--></a>
                     <a><!--country3--></a>
