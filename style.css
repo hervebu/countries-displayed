@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    outline: none;
 }
 body {
     background-color: hsl(0, 0%, 98%);
@@ -20,6 +21,7 @@ body {
     margin-left: 50px;
 }
 #theme-btn {
+    font-size: 14px;
     float: right;
     margin-right: 50px;
     background-color: transparent;
@@ -39,51 +41,64 @@ body {
 }
 .search-field {
     margin-left: 50px;
+    display: inline-block;
+    width: 60%;
 }
-.search-field, .theme-btn {
+.search-field, .region-select {
     font-size: 14px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.search-field > [type="search"] {
+    border: none;
+}
 
-.theme-btn {
+.region-select {
     float: right;
     margin-right: 50px;
+}
+.fas {
+    font-size: 12px;
+    margin-right: 5px;
+}
+.fa-arrow-left {
+    margin-right: 15px;
 }
 #region-filter {
     border: none;
 }
+
 .elements-grid {
     width: 92%;
     margin-left: 50px;
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: auto auto;
-    gap: 50px;
+    gap: 60px;
     margin-bottom: 30px;
 }
 .element-grid-item {
     padding: 0;
-    margin-right: 50px;
-    width: 100%;
 }
 .country-img {
     width: 100%;
     height: 50%;
 }
-.ele-bx-country {
+.ele-country-name {
+    width: 90%;
     margin: 15px 0 10px 20px;
     font-size: 16px;
-
 }
 .country-info {
+    width: 90%;
     padding: none;
+    font-size: 12px;
 }
 .details-li {
     display: block;
     text-decoration: none;
+    margin-top: 5px;
     margin-left: 20px;
-    font-size: 14px;
 }
 .details-body {
     background-color: hsl(0, 0%, 100%);
@@ -114,21 +129,139 @@ body {
 .det-country-name {
     margin-top: 30px;
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 600;
 }
 .country-info {
     display: inline-block;
-    margin-top: 20px;
-    margin-right: 110px;
     vertical-align: top;
+}
+.details-country-info {
+    width: 40%;
+    margin-top: 20px;
 }
 .c-details-2, .c-details-1, .borders-div {
     font-size: 12px;
 }
 .details-label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .borders-div {
     margin-top: 50px;
+}
+.borders-btns {
+    padding: 2px 10px;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .elements-grid {
+        width: 90%;
+        grid-template-columns: auto auto auto;
+        gap: 30px;
+    }
+    .details-div {
+        margin-bottom: 50px;
+    }
+    .side-details {
+        width: 50%;
+        margin-left: 60px;
+    }
+    .det-country-name, .details-country-info {
+        margin-top: 10px;
+    }
+    .borders-div { 
+        margin-top: 15px;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .elements-grid {
+        width: 87%;
+        grid-template-columns: auto auto;
+        gap: 50px;
+    }
+    .back-btn {
+        margin-top: 20px;
+    }
+    .details-div {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+    .img-div {
+        width: 40%;
+    }
+    .side-details {
+        width: 50%;
+        margin-left: 20px;
+        font-size: 9px;
+    }
+    .det-country-name, .details-country-info {
+        margin-top: 5px;
+    }
+    .det-country-name {
+        font-size: 16px;
+    }
+    .details-country-info {
+        font-size: 10px;
+    }
+    .details-label {
+        margin-bottom: 3px;
+    }
+    .borders-div {
+        margin-top: 10px;
+    }
+    .borders-btns {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+}
+@media only screen and (max-width: 420px) {
+    .elements-grid {
+        width: 85%;
+        grid-template-columns: auto;
+        gap: 25px;
+    }
+    .header-bar-title, 
+    .elements-grid, 
+    .back-btn, 
+    .search-field, 
+    .region-select, 
+    .details-div {
+        margin-left: 25px;
+    }
+    .header-bar-title {
+        width: 50%;
+    }
+    #theme-btn {
+        margin-right: 25px;
+    }
+    .region-select {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        float: left;
+    }
+    .img-div {
+        width: 95%;
+    }
+    .side-details {
+        width: 90%;
+        margin-left: 0px;
+        margin-top: 30px;
+        font-size: 9px;
+    }
+    .details-country-info {
+        margin-top: 20px;
+        width: 90%;
+    }
+    .btns-group {
+        margin-top: 10px;
+    }
+    .borders-btns {
+        margin-left: 0px;
+        margin-right: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    } 
 }
