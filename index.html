@@ -9,17 +9,17 @@
         <title>Countries displayed</title>
     </head>
     <body>
-        <header class="header-bar">
+        <header class="element header-bar">
             <h1 class="text1 header-bar-title">Where in the world?</h1>
-            <button id="theme-btn" class="text1"> <i class="fas fa-moon"></i>Dark Mode</button>
+            <div id="theme-btn" class="text1" onclick="changeTheme()"> <i id="theme_icon" class="fas fa-moon"></i><span id="theme-label">Dark Mode</span></div>
         </header>
         <div class="inputs-div">
             <div class="element search-field">
                 <i class="fas fa-search text2"></i>
                 <input type="search" class="" placeholder="Search for a country">
             </div>
-            <label class="element region-select text2">
-                <select name="" id="region-filter">
+            <label class="element region-select">
+                <select name="" class="text2" id="region-filter">
                     <option value="Africa">Africa</option>
                     <option value="America">America</option>
                     <option value="Asia">Asia</option>
@@ -120,5 +120,6 @@
                 </div>
             </div>
         </div>
+        <script src="app.js"></script>
     </body>
 </html>

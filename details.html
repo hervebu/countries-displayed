@@ -9,9 +9,9 @@
         <title>Country details<!--interactiveness in changing of country names--></title>
     </head>
     <body class="details-body">
-        <header class="header-bar">
+        <header class="element header-bar">
             <h1 class="header-bar-title text1">Where in the world?</h1>
-            <button id="theme-btn" class="text1"><!--<i class="fas fa-sun-bright"></i>--><i class="fas fa-moon"></i>Dark Mode</button>
+            <div id="theme-btn" class="text1" onclick="changeTheme()"> <i id="theme_icon" class="fas fa-moon"></i><span id="theme-label">Dark Mode</span></div>
         </header>
         <button class="element back-btn text2"><i class="fas fa-arrow-left"></i>Back</button>
         <div class="details-div">
@@ -44,5 +44,6 @@
                 </div>
             </div>
         </div>
+        <script src="app.js"></script>
     </body>
 </html>

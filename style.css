@@ -7,12 +7,7 @@ body {
     background-color: hsl(0, 0%, 98%);
     font-family: "Nunito Sans", Sans-serif;
 }
-.header-bar {
-    width: 100%;
-    background-color: hsl(0, 0%, 100%);
-    box-shadow: 0px 1px 2px 0px rgba(184, 184, 184, 0.295);
-    padding: 15px 0px;
-}
+
 .header-bar-title {
     display: inline-block;
     font-size: 14px;
@@ -24,8 +19,7 @@ body {
     font-size: 14px;
     float: right;
     margin-right: 50px;
-    background-color: transparent;
-    border: none;
+    cursor: pointer;
 }
 .inputs-div {
     width: 100%;  
@@ -39,18 +33,34 @@ body {
     border-radius: 3px;
     box-shadow: -1px .5px 4px 1px rgba(184, 184, 184, 0.295);
 }
+.text1, .text2, .text3 {
+    color: hsl(200, 15%, 8%);
+}
+
+.text3 {
+    font-weight: 100;
+    
+}
+.header-bar {
+    width: 100%;
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0px 1px 2px 0px rgba(184, 184, 184, 0.295);
+    padding: 15px 0px;
+    border-radius: 0px;
+}
 .search-field {
     margin-left: 50px;
     display: inline-block;
-    width: 60%;
+    width: 30%;
 }
 .search-field, .region-select {
     font-size: 14px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.search-field > [type="search"] {
+.search-field > [type="search"], #region-filter {
     border: none;
+    background-color: transparent;
 }
 
 .region-select {
@@ -145,6 +155,9 @@ body {
 .details-label {
     display: block;
     margin-bottom: 5px;
+}
+.btns-group {
+    display: inline-block;
 }
 .borders-div {
     margin-top: 50px;
