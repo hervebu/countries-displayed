@@ -250,6 +250,10 @@ body {
     #theme-btn {
         margin-right: 25px;
     }
+    .search-field {
+        width: 80%;
+        display: block;
+    }
     .region-select {
         margin-top: 30px;
         margin-bottom: 30px;
