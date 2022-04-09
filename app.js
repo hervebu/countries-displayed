@@ -8,28 +8,21 @@ let text_3 = document.querySelectorAll(".text3");
 let theme_icon = document.getElementById("theme_icon");
 localStorage.setItem("theme_status","bright");
 let countryElements = document.getElementById("elements-grid");
-let details_img = document.getElementsByClassName(".details-img")[0];
-let countryName = document.getElementsByClassName(".det-country-name");
-let nativeName = document.getElementById("details-native-name");
-let population = document.getElementById("details-pop");
-let region = document.getElementById("details-region");
-let subregion = document.getElementById("details-subregion");
-let countryCapital = document.getElementById("details-capital");
-let domain = document.getElementById("details-domain");
-let currency = document.getElementById("details-currency");
-let languages = document.getElementById("details-lan");
+
+
+
 let val, countryObj;
 let https = "https://restcountries.com/v3.1/all";
 
 
 
-let assignToDetailsPage = (responseObj) => {
-    localStorage.removeItem("selectedCountryInfo");
-    localStorage.setItem("selectedCountryInfo",responseObj);
-    window.location.assign('../details.html');
+let assignToDetailsPage = (country_name) => {
+    localStorage.removeItem("selectedCountryName");
+    localStorage.setItem("selectedCountryName",country_name);
+    window.location.assign('../car-details/details.html');
 }; 
 
-fetch(https,
+window.onload = fetch(https,
     {
         method: "GET",
         headers: {
@@ -38,37 +31,23 @@ fetch(https,
         }
     }).then(res => res.json())
     .then(resObject => {
+        
         val = resObject.length-1;
         let count = 0;
         while ( count < resObject.length ) {
-            countryElements.innerHTML += `
-            <div class='element element-grid-item' >`
-            +`<img class='country-img' src='${resObject[count].flags.png}' alt=''>`
-            +`<div><h2 class='text1 ele-country-name'>${resObject[count].name.common}</h2>`
-                +`<ul class='country-info element-details'>`
-                    +`<li class='text2 details-li'>Population: <span class='text3'> ${resObject[count].population}</span> </li>`
-                    +`<li class='text2 details-li'>Region: <span class='text3'> ${resObject[count].subregion}</span> </li>`
-                    +`<li class='text2 details-li'>Capital: <span class='text3'> ${resObject[count].capital}</span> </li>`
-                +`</ul></div></div>`;
-                
-                
+            let gridElement = appendHtmlGridElements(resObject[count]); 
+            countryElements.appendChild(gridElement);
+            themeBtn.setAttribute("onclick", "changeTheme()");
            count ++;     
         };
+        themeBtn.setAttribute("onclick", "changeTheme()");
         countryObj = resObject[count];
         
         console.log(resObject[3].currencies);
     })
-    .then(() => {
-        themeBtn.setAttribute("onclick", "changeTheme()");
-        // while (val >= 0) {
-        //     document.getElementsByClassName(".element-grid-item")[val].addEventListener("click", assignToDetailsPage(countryObj));
-        //     val --;
-        // }
-    })
     .catch(err => {
         console.log(err);
     });
-    // Have to change from adding whole html elements from js to adding values using js
 
     let changeTheme = () => {
         let i = 0, j;
@@ -119,10 +98,63 @@ fetch(https,
             localStorage.removeItem("theme_status");
             localStorage.setItem("theme_status","dark");
         }
-         
-        
-        console.log(localStorage.getItem("theme_status")); 
     }    
 
+    let appendHtmlGridElements = (singleCountryObject) => {
+        let gridItem = document.createElement("div");
+        let imgInGridItem = document.createElement("img");
+        let detailsInGridItem = document.createElement("div");
+        let h2ForCountryName = document.createElement("h2");    
+        let ulInGridItem = document.createElement("ul");
+
+        gridItem.classList.add("element");
+        gridItem.classList.add("element-grid-item");
+        gridItem.setAttribute("onclick", `assignToDetailsPage('${singleCountryObject.name.common}')`);
+
+        imgInGridItem.classList.add("country-img");
+        imgInGridItem.src = singleCountryObject.flags.png;
+        
+        h2ForCountryName.classList.add("text1");
+        h2ForCountryName.classList.add("ele-country-name");
+        h2ForCountryName.textContent = singleCountryObject.name.common;
+        
+        ulInGridItem.classList.add("country-info");
+        ulInGridItem.classList.add("element-details");
+
+        let propertiesArray = ['Population', 'Region', 'Capital'];
+        let valuesArray = 
+            [singleCountryObject.population,
+             singleCountryObject.region, 
+             singleCountryObject.capital];
+        let appendLiToUl = () => {
+            let i = 0;
+            while(i<3) {
+
+                let liInGridItem = document.createElement("li");
+                let spanForliValue = document.createElement("span");
+
+
+                liInGridItem.classList.add("text2");
+                liInGridItem.classList.add("details-li");
+                spanForliValue.classList.add("text3");
+                liInGridItem.textContent = propertiesArray[i]+": ";
+                representVal = valuesArray[i];
+                spanForliValue.textContent = valuesArray[i];
+                ulInGridItem.appendChild(liInGridItem);
+                liInGridItem.appendChild(spanForliValue);
+
+                i++;
+            };
+
+        }
+
+        gridItem.appendChild(imgInGridItem);
+        gridItem.appendChild(detailsInGridItem);
+        detailsInGridItem.appendChild(h2ForCountryName);
+        appendLiToUl();
+        detailsInGridItem.appendChild(ulInGridItem);
+
+        return gridItem;
+    };
 
    
