@@ -38,6 +38,6 @@ let backBtn = document.querySelector(".back-btn");
         });
 
         backBtn.addEventListener("click", () => {
-            window.location.assign('../car-details/index.html');
+            window.location.assign('../countries-displayed/index.html');
         })
 

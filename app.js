@@ -19,7 +19,7 @@ let https = "https://restcountries.com/v3.1/all";
 let assignToDetailsPage = (country_name) => {
     localStorage.removeItem("selectedCountryName");
     localStorage.setItem("selectedCountryName",country_name);
-    window.location.assign('../car-details/details.html');
+    window.location.assign('../countries-displayed/details.html');
 }; 
 
 window.onload = fetch(https,
