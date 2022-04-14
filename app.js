@@ -217,7 +217,7 @@ window.onload = fetch(`${https}all`,
                 while ( count < countryInfoArray.length ) {
                     let gridElement = appendHtmlGridElements(countryInfoArray[count]); 
                     let statusAfterAppending = countryElements.appendChild(gridElement);
-                    if (count == resArray.length - 1) {
+                    if (count == countryInfoArray.length - 1) {
                         checkAppendingStatus(statusAfterAppending);
                     }
                     
