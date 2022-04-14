@@ -16,19 +16,16 @@
         <div class="inputs-div">
             <div class="element search-field">
                 <i class="fas fa-search text2"></i>
-                <input type="search" class="" placeholder="Search for a country">
+                <input type="text" id="search-field" placeholder="Search for a country">
             </div>
-            <label class="element region-select">
-                <select name="" class="text2" id="region-filter">
-                    <option value="Africa">Africa</option>
-                    <option value="America">America</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Europe">Europe</option>
-                    <option value="Oceania">Oceania</option>
-                </select>
-            </label>
-            
-
+            <div  class="element region-select text2" id="region-filter" onclick="ActivateFilterDropdown()"><span id="region-name">Filter by Region</span><i class="fas fa-caret-down"></i></div>
+                <ul class="element region-dropdown text2"> 
+                    <li class="filter-li" onclick="filterByRegion('africa')">Africa</li>
+                    <li class="filter-li" onclick="filterByRegion('america')">America</li>
+                    <li class="filter-li" onclick="filterByRegion('asia')">Asia</li>
+                    <li class="filter-li" onclick="filterByRegion('europe')">Europe</li>
+                    <li class="filter-li" onclick="filterByRegion('oceania')">Oceania</li>
+                </ul>
         </div>
         <div id="elements-grid" class="elements-grid">
         </div>

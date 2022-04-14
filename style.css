@@ -57,18 +57,34 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.search-field > [type="search"], #region-filter {
+.search-field > [type="text"] {
     border: none;
     background-color: transparent;
 }
 
-.region-select {
+.region-select, .region-dropdown {
+    width: 140px;
     float: right;
     margin-right: 50px;
+    cursor: pointer;
+}
+.region-dropdown {
+    margin-top: 5px;
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+}
+.filter-li {
+    display: block;
+    margin-bottom: 5px;
 }
 .fas {
     font-size: 12px;
     margin-right: 5px;
+}
+.fa-caret-down {
+    font-size: 16px;
+    float: right;
 }
 .fa-arrow-left {
     margin-right: 15px;
@@ -81,13 +97,14 @@ body {
     width: 92%;
     margin-left: 50px;
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    gap: 60px;
+    grid-template-columns: repeat(4, 21.5%);
+    gap: 50px;
     margin-bottom: 30px;
 }
 .element-grid-item {
     padding: 0;
     width: 100%;
+    height: 300px;
     cursor: pointer;
 }
 .country-img {
@@ -127,6 +144,7 @@ body {
 .img-div {
     width: 40%;
     display: inline-block;
+    vertical-align: bottom;
 }
 .details-img {
     width: 100%;
@@ -155,24 +173,26 @@ body {
 }
 .details-label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .btns-group {
     display: inline-block;
 }
 .borders-div {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .borders-btns {
+    cursor: pointer;
     padding: 2px 10px;
     margin-left: 5px;
+    margin-top: 5px;
     font-size: 12px;
 }
 
 @media only screen and (max-width: 1024px) {
     .elements-grid {
         width: 90%;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: repeat(3, 31%);
         gap: 30px;
     }
     .details-div {
@@ -192,7 +212,7 @@ body {
 @media only screen and (max-width: 750px) {
     .elements-grid {
         width: 87%;
-        grid-template-columns: auto auto;
+        grid-template-columns: repeat(2, 46%);
         gap: 50px;
     }
     .back-btn {
@@ -220,7 +240,7 @@ body {
         font-size: 10px;
     }
     .details-label {
-        margin-bottom: 3px;
+        margin-bottom: 5px;
     }
     .borders-div {
         margin-top: 10px;
@@ -260,6 +280,10 @@ body {
         margin-bottom: 30px;
         float: left;
     }
+    .region-dropdown {
+        margin-top: 75px;
+        left: 25px;
+    }
     .img-div {
         width: 95%;
     }
@@ -268,6 +292,9 @@ body {
         margin-left: 0px;
         margin-top: 30px;
         font-size: 9px;
+    }
+    .details-label {
+        margin-bottom: 10px;
     }
     .details-country-info {
         margin-top: 20px;

@@ -1,20 +1,12 @@
 
 let themeBtn = document.getElementById("theme-btn");
-let themeBtnText = document.getElementById("theme-label");
-let elements = document.querySelectorAll(".element");
-let text_1 = document.querySelectorAll(".text1");
-let text_2 = document.querySelectorAll(".text2");
-let text_3 = document.querySelectorAll(".text3");
-let theme_icon = document.getElementById("theme_icon");
-localStorage.setItem("theme_status","bright");
 let countryElements = document.getElementById("elements-grid");
-
-
-
-let val, countryObj;
-let https = "https://restcountries.com/v3.1/all";
-
-
+let filterDropdownOptions = document.querySelector(".region-dropdown");
+let filteredRegion = document.getElementById("region-name");
+let searchField = document.getElementById("search-field");
+filterDropdownOptions.style.display = "none";
+localStorage.setItem("theme_status","bright");
+let https = "https://restcountries.com/v3.1/";
 
 let assignToDetailsPage = (country_name) => {
     localStorage.removeItem("selectedCountryName");
@@ -22,7 +14,7 @@ let assignToDetailsPage = (country_name) => {
     window.location.assign('../countries-displayed/details.html');
 }; 
 
-window.onload = fetch(https,
+window.onload = fetch(`${https}all`,
     {
         method: "GET",
         headers: {
@@ -31,25 +23,30 @@ window.onload = fetch(https,
         }
     }).then(res => res.json())
     .then(resObject => {
-        
-        val = resObject.length-1;
+
         let count = 0;
         while ( count < resObject.length ) {
             let gridElement = appendHtmlGridElements(resObject[count]); 
-            countryElements.appendChild(gridElement);
-            themeBtn.setAttribute("onclick", "changeTheme()");
+            let statusAfterAppending = countryElements.appendChild(gridElement);
+            if (count == resObject.length - 1) {
+                checkAppendingStatus(statusAfterAppending);
+            }
+            
            count ++;     
         };
-        themeBtn.setAttribute("onclick", "changeTheme()");
-        countryObj = resObject[count];
-        
-        console.log(resObject[3].currencies);
+
     })
     .catch(err => {
         console.log(err);
     });
 
     let changeTheme = () => {
+        let themeBtnText = document.getElementById("theme-label");
+        let elements = document.querySelectorAll(".element");
+        let text_1 = document.querySelectorAll(".text1");
+        let text_2 = document.querySelectorAll(".text2");
+        let text_3 = document.querySelectorAll(".text3");
+        let theme_icon = document.getElementById("theme_icon");
         let i = 0, j;
         let theme_status = localStorage.getItem("theme_status");
         if (theme_status === "dark"){
@@ -58,7 +55,7 @@ window.onload = fetch(https,
             themeBtnText.textContent = "Dark Mode";
             while (i < elements.length) {
                 elements[i].style.backgroundColor = "hsl(0, 0%, 100%)";
-                elements[i].style.boxShadow = "-1px .5px 4px 1px rgba(184, 184, 184, 0.295)"
+                elements[i].style.boxShadow = "-1px .5px 4px 1px rgba(184, 184, 184, 0.295)";
         
                 i++;
             }
@@ -95,10 +92,18 @@ window.onload = fetch(https,
             for (j = 0; j < text_3.length; j++) {
                 text_3[j].style.color = "hsl(0, 0%, 70%)";
             }
+            searchField.style.color = "hsl(0, 0%, 100%)";
             localStorage.removeItem("theme_status");
             localStorage.setItem("theme_status","dark");
         }
-    }    
+    } 
+
+
+    let checkAppendingStatus = (status) => {
+       if(typeof(status) != "undefined"){
+            themeBtn.setAttribute("onclick", "changeTheme()");
+        };  
+    };   
 
     let appendHtmlGridElements = (singleCountryObject) => {
         let gridItem = document.createElement("div");
@@ -116,7 +121,7 @@ window.onload = fetch(https,
         
         h2ForCountryName.classList.add("text1");
         h2ForCountryName.classList.add("ele-country-name");
-        h2ForCountryName.textContent = singleCountryObject.name.common;
+        h2ForCountryName.textContent = singleCountryObject.name.official;
         
         ulInGridItem.classList.add("country-info");
         ulInGridItem.classList.add("element-details");
@@ -153,8 +158,79 @@ window.onload = fetch(https,
         detailsInGridItem.appendChild(h2ForCountryName);
         appendLiToUl();
         detailsInGridItem.appendChild(ulInGridItem);
-
+        themeBtn.setAttribute("onclick", "changeTheme()");
         return gridItem;
     };
 
+    let ActivateFilterDropdown = () => {
+        if (filterDropdownOptions.style.display === "none") {
+            filterDropdownOptions.style.display = "block";
+        }else {
+            filterDropdownOptions.style.display = "none";
+        }
+    };
    
+    let filterByRegion = (regionName) => {
+        filteredRegion.textContent = regionName;
+        filterDropdownOptions.style.display = "none";
+        fetch(
+            `${https}region/${regionName}`,
+            {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "content-type": "application/json"
+                }
+            })
+            .then(res => res.json())
+            .then(resArray => {
+                countryElements.innerHTML = "";
+                let count = 0;
+                while ( count < resArray.length ) {
+                    let gridElement = appendHtmlGridElements(resArray[count]); 
+                    let statusAfterAppending = countryElements.appendChild(gridElement);
+                    if (count == resArray.length - 1) {
+                        checkAppendingStatus(statusAfterAppending);
+                    }
+                    
+                   count ++;     
+                };
+            })
+    };
+
+
+    let searchByCountryName = (inputValue) => {
+
+        fetch(
+            `${https}name/${inputValue}`,
+            {
+                method:'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        ).then(res => res.json())
+        .then(countryInfoArray => {
+            countryElements.innerHTML = "";
+            let count = 0;
+                while ( count < countryInfoArray.length ) {
+                    let gridElement = appendHtmlGridElements(countryInfoArray[count]); 
+                    let statusAfterAppending = countryElements.appendChild(gridElement);
+                    if (count == resArray.length - 1) {
+                        checkAppendingStatus(statusAfterAppending);
+                    }
+                    
+                   count ++;     
+                };
+        })
+        .catch(err => console.log(err))
+    };
+
+    searchField.addEventListener("keyup", (e) => {
+        
+        if (e.key == "Enter") {
+            searchByCountryName(searchField.value);
+            e.preventDefault();
+        }
+    })
